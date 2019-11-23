@@ -46,7 +46,7 @@ app.post('/webhook', (req, res) => {
 app.get('/webhook', (req, res) => {
 
     // Your verify token. Should be a random string.
-    let VERIFY_TOKEN = "networthverify"
+    const VERIFY_TOKEN = "networthverify"
       
     // Parse the query params
     let mode = req.query['hub.mode'];
@@ -68,4 +68,19 @@ app.get('/webhook', (req, res) => {
         res.sendStatus(403);      
       }
     }
-  });  
+  });
+  
+// Handles messages events
+function handleMessage(sender_psid, received_message) {
+
+}
+
+// Handles messaging_postbacks events
+function handlePostback(sender_psid, received_postback) {
+
+}
+
+// Sends response messages via the Send API
+function callSendAPI(sender_psid, response) {
+  
+}
