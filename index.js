@@ -12,7 +12,6 @@ app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 // This code creates a webhook endpoint that accepts POST, checks request is valid webhook event and parses message
 
 // Creates the endpoint for our webhook 
-// Creates the endpoint for our webhook 
 app.post('/webhook', (req, res) => {  
  
     let body = req.body;
@@ -27,6 +26,10 @@ app.post('/webhook', (req, res) => {
         // will only ever contain one message, so we get index 0
         let webhook_event = entry.messaging[0];
         console.log(webhook_event);
+
+        // Get the sender PSID
+        let sender_psid = webhook_event.sender.id;
+        console.log('Sender PSID: ' + sender_psid);
       });
   
       // Returns a '200 OK' response to all requests
@@ -54,8 +57,6 @@ app.get('/webhook', (req, res) => {
     let mode = req.query['hub.mode'];
     let token = req.query['hub.verify_token'];
     let challenge = req.query['hub.challenge'];
-
-    console.log("HELLO")
       
     // Checks if a token and mode is in the query string of the request
     if (mode && token) {
